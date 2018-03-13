@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion project.androidCompileSdkVersion
+    defaultConfig {
+        applicationId "com.michaelfotiadis.samplearchitecture"
+        minSdkVersion project.androidMinSdkVersion
+        targetSdkVersion project.androidTargetSdkVersion
+
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    packagingOptions.excludes = getDefaultExcludes()
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(':analytics')
+    implementation project(':ui')
+    implementation project(':chat')
+    implementation project(':domain')
+
+    implementation rootProject.ext.dependencies.dagger
+    kapt rootProject.ext.dependencies.daggerAnnotationProcessor
+
+    testImplementation rootProject.ext.testDependencies.jUnit
+    androidTestImplementation rootProject.ext.testDependencies.androidTestRunner
+    androidTestImplementation rootProject.ext.testDependencies.espressoCore
+
+}

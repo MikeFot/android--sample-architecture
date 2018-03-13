@@ -1,0 +1,48 @@
+apply from: 'dependencies.gradle'
+
+buildscript {
+    ext.kotlin_version = '1.2.30'
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+
+def getDefaultExcludes() {
+    return [
+            'META-INF/DEPENDENCIES.txt',
+            'META-INF/DEPENDENCIES',
+            'META-INF/dependencies.txt',
+            'META-INF/LICENSE.txt',
+            'META-INF/LICENSE',
+            'META-INF/license.txt',
+            'META-INF/LGPL2.1',
+            'META-INF/NOTICE.txt',
+            'META-INF/NOTICE',
+            'META-INF/notice.txt',
+            'META-INF/MANIFEST.MF',
+            'META-INF/rxjava.properties'
+    ]
+}
+
+project.ext {
+    androidMinSdkVersion = 19
+    androidTargetSdkVersion = 27
+    androidCompileSdkVersion = 27
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,1 @@
+include ':app', ':analytics', ':ui', ':chat', ':domain', ':net', ':db'
