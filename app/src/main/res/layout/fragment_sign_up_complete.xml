@@ -15,12 +15,19 @@
         android:tint="@color/accent"
         app:srcCompat="@drawable/ic_check_circle_white_24dp"/>
 
-    <com.michaelfotiadis.samplearchitecture.ui.fontviews.FontTextView
+    <yanzhikai.textpath.AsyncTextPathView
+        android:id="@+id/paint_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:fontFamily="@font/opensans_semi_bold"
-        android:text="All done! Tap on the image to continue."
-        android:textSize="18sp"/>
+        app:autoStart="true"
+        app:duration="6000"
+        app:showPainter="true"
+        app:textStrokeColor="@color/primary"
+        app:paintStrokeColor="@color/primary_dark"
+        app:text="All done!"
+        app:textInCenter="true"
+        app:textSize="40sp"/>
 
 </LinearLayout>

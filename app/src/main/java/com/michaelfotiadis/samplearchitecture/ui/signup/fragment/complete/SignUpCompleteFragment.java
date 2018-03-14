@@ -2,6 +2,7 @@ package com.michaelfotiadis.samplearchitecture.ui.signup.fragment.complete;
 
 
 import android.content.Context;
+import android.graphics.Path;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.michaelfotiadis.samplearchitecture.ui.signup.viewmodel.SignUpViewMode
 import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
+import yanzhikai.textpath.AsyncTextPathView;
 
 public class SignUpCompleteFragment extends BaseFragment {
 
@@ -42,6 +44,10 @@ public class SignUpCompleteFragment extends BaseFragment {
         final ImageView imageView = view.findViewById(R.id.image);
 
         imageView.setOnClickListener(this::onImageClicked);
+
+        final AsyncTextPathView pathView = view.findViewById(R.id.paint_view);
+        pathView.setTextPainter((x, y, paintPath) -> paintPath.addCircle(x, y, 6, Path.Direction.CCW));
+
     }
 
     private void onImageClicked(View view) {
