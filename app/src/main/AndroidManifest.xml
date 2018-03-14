@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.michaelfotiadis.samplearchitecture">
+          package="com.michaelfotiadis.samplearchitecture">
 
     <application
         android:name=".SampleApplication"
@@ -10,12 +10,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.signup.SignUpActivity">
+        </activity>
+        <activity android:name=".ui.posts.PostsActivity">
+        </activity>
+        <activity android:name=".ui.chat.ChatActivity">
         </activity>
     </application>
 

@@ -12,6 +12,12 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+
     }
 
     packagingOptions.excludes = getDefaultExcludes()
@@ -32,10 +38,9 @@ android {
 
 dependencies {
 
-    // alternatively, just LiveData
-    api "android.arch.lifecycle:livedata:1.1.0"
+    api rootProject.ext.dependencies.archLiveData
 
-    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
+    annotationProcessor rootProject.ext.dependencies.archProcessor
 
     // Room (use 1.1.0-alpha3 for latest alpha)
     api "android.arch.persistence.room:runtime:1.0.0"

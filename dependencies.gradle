@@ -8,7 +8,6 @@ allprojects {
         androidSupportLibVersion = '27.1.0'
         jUnitVersion = '4.12'
         kotlinVersion = rootProject.ext.kotlin_version
-        markwonVersion = '1.0.3'
         daggerVersion = '2.15'
 
         dependencies = [
@@ -30,35 +29,19 @@ allprojects {
                 retrofit2RxJava2         : 'com.squareup.retrofit2:adapter-rxjava2:2.3.0',
                 okHttpLogging            : 'com.squareup.okhttp3:logging-interceptor:3.10.0',
                 gson                     : 'com.google.code.gson:gson:2.8.1',
-                timber                   : 'com.jakewharton.timber:timber:4.5.1',
-                socketio                 : 'io.socket:socket.io-client:0.8.3',
                 kotlin                   : "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion",
-                facebookSdk              : 'com.facebook.android:facebook-login:[4,5)',
                 multidex                 : 'com.android.support:multidex:1.0.2',
-                flexboxLayout            : 'com.google.android:flexbox:0.3.2',
                 constraintLayout         : 'com.android.support.constraint:constraint-layout:1.0.2',
-                eventBus                 : 'de.greenrobot:eventbus:2.4.0',
-                universalImageLoader     : 'com.nostra13.universalimageloader:universal-image-loader:1.9.4',
-                imageCropper             : 'com.theartofdev.edmodo:android-image-cropper:2.4.5',
-                glide                    : 'com.github.bumptech.glide:glide:3.7.0', // latest 4.1.1
-                materialDialogsCore      : 'com.afollestad.material-dialogs:core:0.9.3.0',
-                textDrawable             : 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1',
-                bypasses                 : 'com.commit451:bypasses:1.0.1',
-                zoomageView              : 'com.jsibbold:zoomage:1.1.0',
-                spyglass                 : 'com.linkedin.android.spyglass:spyglass:1.4.0',
-                swipeLayout              : 'com.daimajia.swipelayout:library:1.2.0@aar',
-                lottie                   : 'com.airbnb.android:lottie:2.2.5',
-                glideTransformations     : 'jp.wasabeef:glide-transformations:2.0.2',
-                appsFlyer                : 'com.appsflyer:af-android-sdk:4.8.6@aar',
-                installReferrer          : 'com.android.installreferrer:installreferrer:1.0',
-                mixpanel                 : 'com.mixpanel.android:mixpanel-android:5.2.2',
-                smartPager               : 'com.michaelfotiadis:android-smart-fragment-pager-adapter:1.0.1',
-                markwonImageLoader       : "ru.noties:markwon-image-loader:${markwonVersion}",
-                markwonView              : "ru.noties:markwon-view:${markwonVersion}",
+                eventBus                 : 'de.greenrobot:eventbus:3.1.1',
                 archPaging               : "android.arch.paging:runtime:1.0.0-alpha5",
                 dagger                   : "com.google.dagger:dagger:$daggerVersion",
                 daggerAnnotationProcessor: "com.google.dagger:dagger-compiler:$daggerVersion",
-                jobQueue                 : 'com.birbit:android-priority-jobqueue:2.0.1'
+                daggerAndroid            : "com.google.dagger:dagger-android:$daggerVersion",
+                daggerAndroidSupport     : "com.google.dagger:dagger-android-support:$daggerVersion",
+                daggerAndroidApt         : "com.google.dagger:dagger-android-processor:$daggerVersion",
+                archExtensions           : "android.arch.lifecycle:extensions:1.1.0",
+                archLiveData             : "android.arch.lifecycle:livedata:1.1.0",
+                archProcessor            : "android.arch.lifecycle:compiler:1.1.0"
         ]
 
         testDependencies = [

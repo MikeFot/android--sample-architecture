@@ -36,10 +36,14 @@ dependencies {
     api project(':net')
     api project(':db')
 
+    api rootProject.ext.dependencies.kotlin
+
     implementation rootProject.ext.dependencies.dagger
     kapt rootProject.ext.dependencies.daggerAnnotationProcessor
 
     testImplementation rootProject.ext.testDependencies.jUnit
     androidTestImplementation rootProject.ext.testDependencies.androidTestRunner
     androidTestImplementation rootProject.ext.testDependencies.espressoCore
+
 }
+

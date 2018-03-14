@@ -1,4 +1,4 @@
-package com.michaelfotiadis.samplearchitecture.common.activity;
+package com.michaelfotiadis.samplearchitecture.ui.common.activity;
 
 import android.support.v7.app.AppCompatActivity;
 

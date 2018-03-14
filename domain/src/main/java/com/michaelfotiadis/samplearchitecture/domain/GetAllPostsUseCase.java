@@ -6,6 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import com.michaelfotiadis.samplearchitecture.db.dao.PostDao;
 import com.michaelfotiadis.samplearchitecture.db.model.Post;
 import com.michaelfotiadis.samplearchitecture.domain.mapper.PostsMapper;
+import com.michaelfotiadis.samplearchitecture.domain.model.NetworkState;
 import com.michaelfotiadis.samplearchitecture.net.MainRepository;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class PostsUseCase {
+public class GetAllPostsUseCase {
 
     private final MainRepository mainRepository;
     private final PostDao postModel;
@@ -21,10 +22,12 @@ public class PostsUseCase {
     private final PostsMapper mapper;
     private Disposable disposable;
 
-    public PostsUseCase(MainRepository mainRepository, PostDao postModel) {
+    public GetAllPostsUseCase(MainRepository mainRepository,
+                              PostDao postModel,
+                              PostsMapper mapper) {
         this.mainRepository = mainRepository;
         this.postModel = postModel;
-        this.mapper = new PostsMapper();
+        this.mapper = mapper;
     }
 
     public LiveData<List<Post>> getPosts() {

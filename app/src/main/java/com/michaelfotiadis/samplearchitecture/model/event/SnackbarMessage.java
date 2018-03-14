@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.michaelfotiadis.samplearchitecture.model;
+package com.michaelfotiadis.samplearchitecture.model.event;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;

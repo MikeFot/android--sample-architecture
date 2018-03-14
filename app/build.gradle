@@ -10,6 +10,8 @@ android {
         minSdkVersion project.androidMinSdkVersion
         targetSdkVersion project.androidTargetSdkVersion
 
+        vectorDrawables.useSupportLibrary = true
+
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -40,8 +42,12 @@ dependencies {
     implementation rootProject.ext.dependencies.dagger
     kapt rootProject.ext.dependencies.daggerAnnotationProcessor
 
+    implementation rootProject.ext.dependencies.daggerAndroid
+    implementation rootProject.ext.dependencies.daggerAndroidSupport
+    kapt rootProject.ext.dependencies.daggerAndroidApt
+
     testImplementation rootProject.ext.testDependencies.jUnit
     androidTestImplementation rootProject.ext.testDependencies.androidTestRunner
     androidTestImplementation rootProject.ext.testDependencies.espressoCore
-
 }
+

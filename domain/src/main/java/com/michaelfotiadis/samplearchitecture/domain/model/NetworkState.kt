@@ -1,4 +1,4 @@
-package com.michaelfotiadis.samplearchitecture.domain
+package com.michaelfotiadis.samplearchitecture.domain.model
 
 enum class Status {
     RUNNING,
