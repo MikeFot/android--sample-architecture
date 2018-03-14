@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatDelegate;
 
 import com.michaelfotiadis.samplearchitecture.di.component.DaggerAppComponent;
 import com.michaelfotiadis.samplearchitecture.log.AppLog;
+import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
 
@@ -21,6 +22,12 @@ public class SampleApplication extends Application implements HasActivityInjecto
     @Override
     public void onCreate() {
         super.onCreate();
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
         DaggerAppComponent.builder().application(this).build().inject(this);
         AppLog.d("Starting application");
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
