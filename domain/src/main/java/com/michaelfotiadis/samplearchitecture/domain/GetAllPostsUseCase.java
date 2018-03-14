@@ -6,7 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import com.michaelfotiadis.samplearchitecture.db.dao.PostDao;
 import com.michaelfotiadis.samplearchitecture.db.model.Post;
 import com.michaelfotiadis.samplearchitecture.domain.mapper.PostsMapper;
-import com.michaelfotiadis.samplearchitecture.domain.model.NetworkState;
+import com.michaelfotiadis.samplearchitecture.domain.model.LoadingState;
 import com.michaelfotiadis.samplearchitecture.net.MainRepository;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class GetAllPostsUseCase {
 
     private final MainRepository mainRepository;
     private final PostDao postModel;
-    private MutableLiveData<NetworkState> networkState = new MutableLiveData<>();
+    private MutableLiveData<LoadingState> networkState = new MutableLiveData<>();
     private final PostsMapper mapper;
     private Disposable disposable;
 
@@ -34,7 +34,7 @@ public class GetAllPostsUseCase {
         return postModel.getAllPostsLive();
     }
 
-    public MutableLiveData<NetworkState> getNetworkState() {
+    public MutableLiveData<LoadingState> getNetworkState() {
         return networkState;
     }
 
@@ -48,16 +48,16 @@ public class GetAllPostsUseCase {
 
     private void onLoading(Disposable disposable1) {
         disposable = disposable1;
-        networkState.postValue(NetworkState.Companion.getLOADING());
+        networkState.postValue(LoadingState.Companion.getLOADING());
     }
 
     private void onLoaded(List<Post> posts) {
-        networkState.postValue(NetworkState.Companion.getLOADED());
+        networkState.postValue(LoadingState.Companion.getLOADED());
         postModel.upsertPosts(posts);
     }
 
     private void onError(Throwable throwable) {
-        networkState.postValue(NetworkState.Companion.error(throwable));
+        networkState.postValue(LoadingState.Companion.error(throwable));
     }
 
     public void onCancel() {

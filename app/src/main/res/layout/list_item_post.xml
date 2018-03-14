@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/CardView.Light"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.michaelfotiadis.samplearchitecture.ui.fontviews.FontTextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_semi_bold"
+            android:padding="8dp"
+            android:textSize="16sp"
+            tools:text="This is a title"/>
+
+        <com.michaelfotiadis.samplearchitecture.ui.fontviews.FontTextView
+            android:id="@+id/subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_regular"
+            android:padding="8dp"
+            android:textSize="14sp"
+            tools:text="Blah blah blah"/>
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

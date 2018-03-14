@@ -12,8 +12,8 @@ import com.michaelfotiadis.samplearchitecture.db.AppDatabase;
 import com.michaelfotiadis.samplearchitecture.db.dao.PostDao;
 import com.michaelfotiadis.samplearchitecture.net.MainRepository;
 import com.michaelfotiadis.samplearchitecture.net.RepositoryStore;
-import com.michaelfotiadis.samplearchitecture.ui.main.MainComponent;
-import com.michaelfotiadis.samplearchitecture.ui.posts.PostsComponent;
+import com.michaelfotiadis.samplearchitecture.ui.main.di.MainComponent;
+import com.michaelfotiadis.samplearchitecture.ui.posts.di.PostListComponent;
 
 import java.lang.reflect.Modifier;
 
@@ -24,7 +24,7 @@ import dagger.Module;
 import dagger.Provides;
 
 
-@Module(subcomponents = {MainComponent.class, PostsComponent.class})
+@Module(subcomponents = {MainComponent.class, PostListComponent.class})
 public class AppModule {
 
     @Provides

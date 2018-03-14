@@ -46,6 +46,8 @@ dependencies {
     implementation rootProject.ext.dependencies.daggerAndroidSupport
     kapt rootProject.ext.dependencies.daggerAndroidApt
 
+    implementation rootProject.ext.dependencies.archExtensions
+
     testImplementation rootProject.ext.testDependencies.jUnit
     androidTestImplementation rootProject.ext.testDependencies.androidTestRunner
     androidTestImplementation rootProject.ext.testDependencies.espressoCore

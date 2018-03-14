@@ -3,9 +3,9 @@ package com.michaelfotiadis.samplearchitecture.di.module;
 import android.app.Activity;
 
 import com.michaelfotiadis.samplearchitecture.ui.main.MainActivity;
-import com.michaelfotiadis.samplearchitecture.ui.main.MainComponent;
-import com.michaelfotiadis.samplearchitecture.ui.posts.PostsActivity;
-import com.michaelfotiadis.samplearchitecture.ui.posts.PostsComponent;
+import com.michaelfotiadis.samplearchitecture.ui.main.di.MainComponent;
+import com.michaelfotiadis.samplearchitecture.ui.posts.PostListActivity;
+import com.michaelfotiadis.samplearchitecture.ui.posts.di.PostListComponent;
 
 import dagger.Binds;
 import dagger.Module;
@@ -23,8 +23,8 @@ public abstract class ActivityBuilder {
 
     @Binds
     @IntoMap
-    @ActivityKey(PostsActivity.class)
-    abstract AndroidInjector.Factory<? extends Activity> bindPostsActivity(PostsComponent.Builder builder);
+    @ActivityKey(PostListActivity.class)
+    abstract AndroidInjector.Factory<? extends Activity> bindPostsActivity(PostListComponent.Builder builder);
 
 
 }

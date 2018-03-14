@@ -1,4 +1,6 @@
-package com.michaelfotiadis.samplearchitecture.ui.main;
+package com.michaelfotiadis.samplearchitecture.ui.main.di;
+
+import com.michaelfotiadis.samplearchitecture.ui.main.MainActivity;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
