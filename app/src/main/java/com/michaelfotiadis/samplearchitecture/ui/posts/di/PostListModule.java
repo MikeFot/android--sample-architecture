@@ -1,6 +1,7 @@
 package com.michaelfotiadis.samplearchitecture.ui.posts.di;
 
 import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 
 import com.michaelfotiadis.samplearchitecture.db.dao.PostDao;
 import com.michaelfotiadis.samplearchitecture.di.scope.ActivityScope;
@@ -11,6 +12,7 @@ import com.michaelfotiadis.samplearchitecture.ui.common.intent.IntentDispatcher;
 import com.michaelfotiadis.samplearchitecture.ui.posts.PostListActivity;
 import com.michaelfotiadis.samplearchitecture.ui.posts.mapper.PostsUiMapper;
 import com.michaelfotiadis.samplearchitecture.ui.posts.viewmodel.Factory;
+import com.michaelfotiadis.samplearchitecture.ui.posts.viewmodel.PostListViewModel;
 
 import dagger.Module;
 import dagger.Provides;
@@ -48,6 +50,12 @@ public class PostListModule {
     @ActivityScope
     ViewModelProvider.Factory providesViewModelFactory(GetAllPostsUseCase useCase, PostsUiMapper mapper) {
         return new Factory(useCase, mapper);
+    }
+
+    @Provides
+    @ActivityScope
+    PostListViewModel providesViewModel(PostListActivity activity, ViewModelProvider.Factory factory) {
+        return ViewModelProviders.of(activity, factory).get(PostListViewModel.class);
     }
 
 }

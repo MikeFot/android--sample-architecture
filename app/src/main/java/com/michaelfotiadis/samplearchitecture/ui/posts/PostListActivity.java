@@ -1,7 +1,5 @@
 package com.michaelfotiadis.samplearchitecture.ui.posts;
 
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,13 +23,11 @@ import dagger.android.AndroidInjection;
 
 public class PostListActivity extends BaseActivity {
 
-    @Inject
-    ViewModelProvider.Factory viewModelFactory;
 
     private ViewFlipper viewFlipper;
-    private RecyclerView recyclerView;
     private PostListAdapter adapter;
-    private PostListViewModel viewModel;
+    @Inject
+    PostListViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +37,8 @@ public class PostListActivity extends BaseActivity {
         setTitle("Posts");
 
         viewFlipper = findViewById(R.id.view_flipper);
-        recyclerView = findViewById(R.id.recycler_view);
+        setUpRecyclerView();
 
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new PostListAdapter();
-        recyclerView.setAdapter(adapter);
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(PostListViewModel.class);
         viewModel.getPostUiData().observe(this, this::onPostsChanged);
         viewModel.getNetworkStateLiveData().observe(this, this::onNetworkStateChanged);
     }
@@ -58,6 +47,14 @@ public class PostListActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         viewModel.refresh();
+    }
+
+    private void setUpRecyclerView() {
+        final RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new PostListAdapter();
+        recyclerView.setAdapter(adapter);
     }
 
     private void onNetworkStateChanged(LoadingState loadingState) {
