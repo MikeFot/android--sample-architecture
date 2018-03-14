@@ -14,6 +14,7 @@ import com.michaelfotiadis.samplearchitecture.net.MainRepository;
 import com.michaelfotiadis.samplearchitecture.net.RepositoryStore;
 import com.michaelfotiadis.samplearchitecture.ui.main.di.MainComponent;
 import com.michaelfotiadis.samplearchitecture.ui.posts.di.PostListComponent;
+import com.michaelfotiadis.samplearchitecture.ui.signup.di.SignUpComponent;
 
 import java.lang.reflect.Modifier;
 
@@ -24,7 +25,7 @@ import dagger.Module;
 import dagger.Provides;
 
 
-@Module(subcomponents = {MainComponent.class, PostListComponent.class})
+@Module(subcomponents = {MainComponent.class, PostListComponent.class, SignUpComponent.class})
 public class AppModule {
 
     @Provides

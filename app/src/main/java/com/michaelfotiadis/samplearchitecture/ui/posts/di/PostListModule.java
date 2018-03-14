@@ -13,11 +13,12 @@ import com.michaelfotiadis.samplearchitecture.ui.posts.PostListActivity;
 import com.michaelfotiadis.samplearchitecture.ui.posts.mapper.PostsUiMapper;
 import com.michaelfotiadis.samplearchitecture.ui.posts.viewmodel.Factory;
 import com.michaelfotiadis.samplearchitecture.ui.posts.viewmodel.PostListViewModel;
+import com.michaelfotiadis.samplearchitecture.ui.signup.fragment.email.di.EmailFragmentSubcomponent;
 
 import dagger.Module;
 import dagger.Provides;
 
-@Module
+@Module(subcomponents = EmailFragmentSubcomponent.class)
 public class PostListModule {
 
     @Provides

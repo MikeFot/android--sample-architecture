@@ -1,13 +1,26 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.michaelfotiadis.samplearchitecture.ui.signup.fragment.complete.SignUpCompleteFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical"
+              tools:context="com.michaelfotiadis.samplearchitecture.ui.signup.fragment.complete.SignUpCompleteFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="16dp"
+        android:tint="@color/accent"
+        app:srcCompat="@drawable/ic_check_circle_white_24dp"/>
 
-</FrameLayout>
+    <com.michaelfotiadis.samplearchitecture.ui.fontviews.FontTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/opensans_semi_bold"
+        android:text="All done! Tap on the image to continue."
+        android:textSize="18sp"/>
+
+</LinearLayout>
