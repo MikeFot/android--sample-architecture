@@ -9,6 +9,7 @@ public class Factory implements ViewModelProvider.Factory {
 
     }
 
+    @NonNull
     @SuppressWarnings("unchecked")
     @Override
     public SignUpViewModel create(@NonNull Class modelClass) {

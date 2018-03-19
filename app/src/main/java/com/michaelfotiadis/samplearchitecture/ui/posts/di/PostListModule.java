@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import com.michaelfotiadis.samplearchitecture.db.dao.PostDao;
 import com.michaelfotiadis.samplearchitecture.di.scope.ActivityScope;
 import com.michaelfotiadis.samplearchitecture.domain.GetAllPostsUseCase;
-import com.michaelfotiadis.samplearchitecture.domain.RefreshPostsUseCase;
+import com.michaelfotiadis.samplearchitecture.domain.RefreshAndGetPostsUseCase;
 import com.michaelfotiadis.samplearchitecture.domain.RefreshPostsUseCaseV2;
 import com.michaelfotiadis.samplearchitecture.domain.mapper.PostsMapper;
 import com.michaelfotiadis.samplearchitecture.net.MainRepository;
@@ -37,10 +37,10 @@ public class PostListModule {
 
     @Provides
     @ActivityScope
-    RefreshPostsUseCase providesRefreshPostsUseCase(MainRepository mainRepository,
-                                                    PostDao postModel,
-                                                    PostsMapper mapper) {
-        return new RefreshPostsUseCase(mainRepository, postModel, mapper);
+    RefreshAndGetPostsUseCase providesRefreshPostsUseCase(MainRepository mainRepository,
+                                                          PostDao postModel,
+                                                          PostsMapper mapper) {
+        return new RefreshAndGetPostsUseCase(mainRepository, postModel, mapper);
     }
 
     @Provides

@@ -14,7 +14,7 @@ import java.util.List;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class RefreshPostsUseCase {
+public class RefreshAndGetPostsUseCase {
 
     private final MainRepository mainRepository;
     private final PostDao postModel;
@@ -22,9 +22,9 @@ public class RefreshPostsUseCase {
     private final PostsMapper mapper;
     private Disposable disposable;
 
-    public RefreshPostsUseCase(MainRepository mainRepository,
-                               PostDao postModel,
-                               PostsMapper mapper) {
+    public RefreshAndGetPostsUseCase(MainRepository mainRepository,
+                                     PostDao postModel,
+                                     PostsMapper mapper) {
         this.mainRepository = mainRepository;
         this.postModel = postModel;
         this.mapper = mapper;

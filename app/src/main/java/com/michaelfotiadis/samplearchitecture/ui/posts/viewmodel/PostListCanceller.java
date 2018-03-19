@@ -10,7 +10,6 @@ public class PostListCanceller extends Canceller implements LifecycleObserver {
 
     private final Lifecycle lifecycle;
 
-
     public PostListCanceller(Lifecycle lifecycle) {
         this.lifecycle = lifecycle;
         this.lifecycle.addObserver(this);
@@ -23,8 +22,8 @@ public class PostListCanceller extends Canceller implements LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     void onDestroy() {
-        this.lifecycle.removeObserver(this);
+        unRegister();
+        lifecycle.removeObserver(this);
     }
-
 
 }

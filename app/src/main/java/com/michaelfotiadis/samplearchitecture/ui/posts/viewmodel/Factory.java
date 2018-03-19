@@ -18,6 +18,7 @@ public class Factory implements ViewModelProvider.Factory {
         this.mapper = mapper;
     }
 
+    @NonNull
     @SuppressWarnings("unchecked")
     @Override
     public PostListViewModel create(@NonNull Class modelClass) {
