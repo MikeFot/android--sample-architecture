@@ -7,27 +7,33 @@ import android.arch.lifecycle.ViewModel;
 
 import com.michaelfotiadis.samplearchitecture.db.model.Post;
 import com.michaelfotiadis.samplearchitecture.domain.GetAllPostsUseCase;
+import com.michaelfotiadis.samplearchitecture.domain.RefreshPostsUseCaseV2;
+import com.michaelfotiadis.samplearchitecture.domain.listener.LoadingCallbacks;
 import com.michaelfotiadis.samplearchitecture.domain.model.LoadingState;
 import com.michaelfotiadis.samplearchitecture.ui.posts.adapter.UiPost;
 import com.michaelfotiadis.samplearchitecture.ui.posts.mapper.PostsUiMapper;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class PostListViewModel extends ViewModel {
 
-    private final GetAllPostsUseCase useCase;
+    private final RefreshPostsUseCaseV2 refreshUseCase;
     private final LiveData<List<Post>> postLiveData;
     private final PostsUiMapper mapper;
+    private final MutableLiveData<LoadingState> loadingStateLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<UiPost>> postUiData = new MutableLiveData<>();
-    private final LiveData<LoadingState> networkStateLiveData;
     private final Observer<List<Post>> observer = PostListViewModel.this::mapToUi;
 
-    PostListViewModel(final GetAllPostsUseCase useCase, final PostsUiMapper mapper) {
-        this.useCase = useCase;
-        this.postLiveData = useCase.getPosts();
+    PostListViewModel(final RefreshPostsUseCaseV2 refreshUseCase,
+                      final GetAllPostsUseCase getAllPostsUseCase,
+                      final PostsUiMapper mapper) {
+        this.refreshUseCase = refreshUseCase;
         this.mapper = mapper;
+
+        this.postLiveData = getAllPostsUseCase.getPostsData();
         this.postLiveData.observeForever(observer);
-        this.networkStateLiveData = useCase.getNetworkState();
     }
 
     private void mapToUi(List<Post> posts) {
@@ -35,21 +41,27 @@ public class PostListViewModel extends ViewModel {
         postUiData.postValue(uiPosts);
     }
 
+    public MutableLiveData<LoadingState> getLoadingStateLiveData() {
+        return loadingStateLiveData;
+    }
+
     public void refresh() {
-        useCase.refreshPosts();
+        refreshUseCase.refreshPosts(new LoadingCallbacks() {
+            @Override
+            public void onStateChanged(@NotNull LoadingState state) {
+                loadingStateLiveData.postValue(state);
+            }
+        });
     }
 
-    public LiveData<List<UiPost>> getPostUiData() {
+    public LiveData<List<UiPost>> getPostUiLiveData() {
         return postUiData;
-    }
-
-    public LiveData<LoadingState> getNetworkStateLiveData() {
-        return networkStateLiveData;
     }
 
     @Override
     protected void onCleared() {
         super.onCleared();
+        refreshUseCase.cancel();
         postLiveData.removeObserver(observer);
     }
 }

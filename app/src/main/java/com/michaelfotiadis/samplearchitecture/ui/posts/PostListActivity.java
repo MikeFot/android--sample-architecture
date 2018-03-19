@@ -23,6 +23,8 @@ import dagger.android.AndroidInjection;
 
 public class PostListActivity extends BaseActivity {
 
+    private static final int INDEX_PROGRESS = 0;
+    private static final int INDEX_CONTENT = 1;
 
     private ViewFlipper viewFlipper;
     private PostListAdapter adapter;
@@ -39,8 +41,8 @@ public class PostListActivity extends BaseActivity {
         viewFlipper = findViewById(R.id.view_flipper);
         setUpRecyclerView();
 
-        viewModel.getPostUiData().observe(this, this::onPostsChanged);
-        viewModel.getNetworkStateLiveData().observe(this, this::onNetworkStateChanged);
+        viewModel.getPostUiLiveData().observe(this, this::onPostsChanged);
+        viewModel.getLoadingStateLiveData().observe(this, this::onNetworkStateChanged);
     }
 
     @Override
@@ -62,10 +64,10 @@ public class PostListActivity extends BaseActivity {
             AppLog.i("NetworkState: " + loadingState.getStatus());
             switch (loadingState.getStatus()) {
                 case RUNNING:
-                    viewFlipper.setDisplayedChild(0);
+                    viewFlipper.setDisplayedChild(INDEX_PROGRESS);
                     break;
                 case SUCCESS:
-                    viewFlipper.setDisplayedChild(1);
+                    viewFlipper.setDisplayedChild(INDEX_CONTENT);
                     break;
                 case FAILED:
                     Toast.makeText(this, loadingState.getMsg(), Toast.LENGTH_SHORT).show();

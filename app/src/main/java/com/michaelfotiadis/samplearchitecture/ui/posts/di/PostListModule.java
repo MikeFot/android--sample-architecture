@@ -6,19 +6,21 @@ import android.arch.lifecycle.ViewModelProviders;
 import com.michaelfotiadis.samplearchitecture.db.dao.PostDao;
 import com.michaelfotiadis.samplearchitecture.di.scope.ActivityScope;
 import com.michaelfotiadis.samplearchitecture.domain.GetAllPostsUseCase;
+import com.michaelfotiadis.samplearchitecture.domain.RefreshPostsUseCase;
+import com.michaelfotiadis.samplearchitecture.domain.RefreshPostsUseCaseV2;
 import com.michaelfotiadis.samplearchitecture.domain.mapper.PostsMapper;
 import com.michaelfotiadis.samplearchitecture.net.MainRepository;
 import com.michaelfotiadis.samplearchitecture.ui.common.intent.IntentDispatcher;
 import com.michaelfotiadis.samplearchitecture.ui.posts.PostListActivity;
 import com.michaelfotiadis.samplearchitecture.ui.posts.mapper.PostsUiMapper;
 import com.michaelfotiadis.samplearchitecture.ui.posts.viewmodel.Factory;
+import com.michaelfotiadis.samplearchitecture.ui.posts.viewmodel.PostListCanceller;
 import com.michaelfotiadis.samplearchitecture.ui.posts.viewmodel.PostListViewModel;
-import com.michaelfotiadis.samplearchitecture.ui.signup.fragment.email.di.EmailFragmentSubcomponent;
 
 import dagger.Module;
 import dagger.Provides;
 
-@Module(subcomponents = EmailFragmentSubcomponent.class)
+@Module
 public class PostListModule {
 
     @Provides
@@ -35,10 +37,31 @@ public class PostListModule {
 
     @Provides
     @ActivityScope
-    GetAllPostsUseCase providesPostsUseCase(MainRepository mainRepository,
-                                            PostDao postModel,
-                                            PostsMapper mapper) {
-        return new GetAllPostsUseCase(mainRepository, postModel, mapper);
+    RefreshPostsUseCase providesRefreshPostsUseCase(MainRepository mainRepository,
+                                                    PostDao postModel,
+                                                    PostsMapper mapper) {
+        return new RefreshPostsUseCase(mainRepository, postModel, mapper);
+    }
+
+    @Provides
+    @ActivityScope
+    PostListCanceller providesPostListCanceller(PostListActivity activity) {
+        return new PostListCanceller(activity.getLifecycle());
+    }
+
+    @Provides
+    @ActivityScope
+    RefreshPostsUseCaseV2 providesRefreshPostsUseCaseV2(MainRepository mainRepository,
+                                                        PostDao postModel,
+                                                        PostsMapper mapper,
+                                                        PostListCanceller canceller) {
+        return new RefreshPostsUseCaseV2(mainRepository, postModel, mapper, canceller);
+    }
+
+    @Provides
+    @ActivityScope
+    GetAllPostsUseCase providesGetAllPostsUseCase(PostDao postModel) {
+        return new GetAllPostsUseCase(postModel);
     }
 
     @Provides
@@ -49,8 +72,10 @@ public class PostListModule {
 
     @Provides
     @ActivityScope
-    ViewModelProvider.Factory providesViewModelFactory(GetAllPostsUseCase useCase, PostsUiMapper mapper) {
-        return new Factory(useCase, mapper);
+    ViewModelProvider.Factory providesViewModelFactory(RefreshPostsUseCaseV2 refreshPostsUseCaseV2,
+                                                       GetAllPostsUseCase getAllPostsUseCase,
+                                                       PostsUiMapper mapper) {
+        return new Factory(refreshPostsUseCaseV2, getAllPostsUseCase, mapper);
     }
 
     @Provides
