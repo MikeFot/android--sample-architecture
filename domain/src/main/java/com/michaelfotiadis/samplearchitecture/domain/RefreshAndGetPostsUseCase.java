@@ -7,7 +7,7 @@ import com.michaelfotiadis.samplearchitecture.db.dao.PostDao;
 import com.michaelfotiadis.samplearchitecture.db.model.Post;
 import com.michaelfotiadis.samplearchitecture.domain.mapper.PostsMapper;
 import com.michaelfotiadis.samplearchitecture.domain.model.LoadingState;
-import com.michaelfotiadis.samplearchitecture.net.MainRepository;
+import com.michaelfotiadis.samplearchitecture.net.RestRepository;
 
 import java.util.List;
 
@@ -16,13 +16,13 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RefreshAndGetPostsUseCase {
 
-    private final MainRepository mainRepository;
+    private final RestRepository mainRepository;
     private final PostDao postModel;
     private MutableLiveData<LoadingState> networkState = new MutableLiveData<>();
     private final PostsMapper mapper;
     private Disposable disposable;
 
-    public RefreshAndGetPostsUseCase(MainRepository mainRepository,
+    public RefreshAndGetPostsUseCase(RestRepository mainRepository,
                                      PostDao postModel,
                                      PostsMapper mapper) {
         this.mainRepository = mainRepository;

@@ -13,7 +13,7 @@ public class RepositoryStore {
 
     private final String serverEndpoint;
     private final String chatEndpoint;
-    private final MainRepository mainRepository;
+    private final RestRepository mainRepository;
 
     public RepositoryStore(final String baseUrl,
                            final String baseChatUrl,
@@ -30,11 +30,11 @@ public class RepositoryStore {
                 .build();
         final Retrofit adapter = RestAdapterFactory.create(baseUrl, okHttpClient, gson);
 
-        mainRepository = new MainRepository(adapter);
+        mainRepository = new RestRepository(adapter);
 
     }
 
-    public MainRepository getMainRepository() {
+    public RestRepository getMainRepository() {
         return mainRepository;
     }
 

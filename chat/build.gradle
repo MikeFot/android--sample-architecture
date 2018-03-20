@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion project.androidCompileSdkVersion
@@ -32,6 +34,15 @@ android {
 
 dependencies {
     implementation project(':domain')
+
+    implementation rootProject.ext.dependencies.dagger
+    kapt rootProject.ext.dependencies.daggerAnnotationProcessor
+
+    implementation rootProject.ext.dependencies.daggerAndroid
+    implementation rootProject.ext.dependencies.daggerAndroidSupport
+    kapt rootProject.ext.dependencies.daggerAndroidApt
+
+    implementation rootProject.ext.dependencies.archExtensions
 
     testImplementation rootProject.ext.testDependencies.jUnit
     androidTestImplementation rootProject.ext.testDependencies.androidTestRunner

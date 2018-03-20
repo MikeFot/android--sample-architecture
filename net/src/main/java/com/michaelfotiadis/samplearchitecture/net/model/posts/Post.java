@@ -1,8 +1,9 @@
 package com.michaelfotiadis.samplearchitecture.net.model.posts;
 
 import com.google.gson.annotations.SerializedName;
+import com.michaelfotiadis.samplearchitecture.net.model.ApiModel;
 
-public class Post {
+public class Post implements ApiModel {
 
     @SerializedName("userId")
     private Integer userId;

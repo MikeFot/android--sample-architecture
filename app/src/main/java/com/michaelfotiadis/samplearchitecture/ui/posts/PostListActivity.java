@@ -41,7 +41,7 @@ public class PostListActivity extends BaseActivity {
         viewFlipper = findViewById(R.id.view_flipper);
         setUpRecyclerView();
 
-        viewModel.getPostUiLiveData().observe(this, this::onPostsChanged);
+        viewModel.getPostUiData().observe(this, this::onPostsChanged);
         viewModel.getLoadingStateLiveData().observe(this, this::onNetworkStateChanged);
     }
 

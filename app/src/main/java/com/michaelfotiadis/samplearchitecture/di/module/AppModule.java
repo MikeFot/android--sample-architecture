@@ -10,8 +10,8 @@ import com.michaelfotiadis.samplearchitecture.analytics.Analytics;
 import com.michaelfotiadis.samplearchitecture.analytics.MixPanelAnalytics;
 import com.michaelfotiadis.samplearchitecture.db.AppDatabase;
 import com.michaelfotiadis.samplearchitecture.db.dao.PostDao;
-import com.michaelfotiadis.samplearchitecture.net.MainRepository;
 import com.michaelfotiadis.samplearchitecture.net.RepositoryStore;
+import com.michaelfotiadis.samplearchitecture.net.RestRepository;
 import com.michaelfotiadis.samplearchitecture.ui.main.di.MainComponent;
 import com.michaelfotiadis.samplearchitecture.ui.posts.di.PostListComponent;
 import com.michaelfotiadis.samplearchitecture.ui.signup.di.SignUpComponent;
@@ -65,7 +65,7 @@ public class AppModule {
     }
 
     @Provides
-    MainRepository providesMainRepository(final RepositoryStore repositoryStore) {
+    RestRepository providesMainRepository(final RepositoryStore repositoryStore) {
         return repositoryStore.getMainRepository();
     }
 

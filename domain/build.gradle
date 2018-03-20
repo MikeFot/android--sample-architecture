@@ -46,6 +46,8 @@ dependencies {
     androidTestImplementation rootProject.ext.testDependencies.espressoCore
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    compile group: 'net.moznion', name: 'random-string', version: '1.1.0'
+
 }
 repositories {
     mavenCentral()

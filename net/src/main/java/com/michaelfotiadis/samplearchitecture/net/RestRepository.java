@@ -9,12 +9,12 @@ import java.util.List;
 import io.reactivex.Single;
 import retrofit2.Retrofit;
 
-public class MainRepository {
+public class RestRepository {
 
 
     private final Api api;
 
-    public MainRepository(Retrofit retrofit) {
+    public RestRepository(Retrofit retrofit) {
         this.api = retrofit.create(Api.class);
     }
 

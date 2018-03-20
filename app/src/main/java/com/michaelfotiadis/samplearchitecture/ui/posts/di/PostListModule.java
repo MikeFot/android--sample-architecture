@@ -9,7 +9,7 @@ import com.michaelfotiadis.samplearchitecture.domain.GetAllPostsUseCase;
 import com.michaelfotiadis.samplearchitecture.domain.RefreshAndGetPostsUseCase;
 import com.michaelfotiadis.samplearchitecture.domain.RefreshPostsUseCaseV2;
 import com.michaelfotiadis.samplearchitecture.domain.mapper.PostsMapper;
-import com.michaelfotiadis.samplearchitecture.net.MainRepository;
+import com.michaelfotiadis.samplearchitecture.net.RestRepository;
 import com.michaelfotiadis.samplearchitecture.ui.common.intent.IntentDispatcher;
 import com.michaelfotiadis.samplearchitecture.ui.posts.PostListActivity;
 import com.michaelfotiadis.samplearchitecture.ui.posts.mapper.PostsUiMapper;
@@ -37,7 +37,7 @@ public class PostListModule {
 
     @Provides
     @ActivityScope
-    RefreshAndGetPostsUseCase providesRefreshPostsUseCase(MainRepository mainRepository,
+    RefreshAndGetPostsUseCase providesRefreshPostsUseCase(RestRepository mainRepository,
                                                           PostDao postModel,
                                                           PostsMapper mapper) {
         return new RefreshAndGetPostsUseCase(mainRepository, postModel, mapper);
@@ -51,7 +51,7 @@ public class PostListModule {
 
     @Provides
     @ActivityScope
-    RefreshPostsUseCaseV2 providesRefreshPostsUseCaseV2(MainRepository mainRepository,
+    RefreshPostsUseCaseV2 providesRefreshPostsUseCaseV2(RestRepository mainRepository,
                                                         PostDao postModel,
                                                         PostsMapper mapper,
                                                         PostListCanceller canceller) {

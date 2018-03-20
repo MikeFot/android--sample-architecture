@@ -13,13 +13,15 @@ public class PostsUiMapper {
         final List<UiPost> uiPosts = new ArrayList<>();
         if (dbPosts != null) {
             for (final Post dbPost : dbPosts) {
-                UiPost uiPost = UiPost.newBuilder()
-                        .withId(dbPost.getId())
-                        .withBody(dbPost.getBody())
-                        .withTitle(dbPost.getTitle())
-                        .withUserId(dbPost.getUserId())
-                        .build();
-                uiPosts.add(uiPost);
+                if (dbPost != null) {
+                    UiPost uiPost = UiPost.newBuilder()
+                            .withId(dbPost.getId())
+                            .withBody(dbPost.getBody())
+                            .withTitle(dbPost.getTitle())
+                            .withUserId(dbPost.getUserId())
+                            .build();
+                    uiPosts.add(uiPost);
+                }
             }
         }
         return uiPosts;

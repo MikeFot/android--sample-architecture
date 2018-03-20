@@ -1,8 +1,9 @@
 package com.michaelfotiadis.samplearchitecture.net.model.users;
 
 import com.google.gson.annotations.SerializedName;
+import com.michaelfotiadis.samplearchitecture.net.model.ApiModel;
 
-public class Company {
+public class Company implements ApiModel {
 
     @SerializedName("name")
     private String name;

@@ -3,6 +3,7 @@ package com.michaelfotiadis.samplearchitecture.di.component;
 import android.app.Application;
 
 import com.michaelfotiadis.samplearchitecture.SampleApplication;
+import com.michaelfotiadis.samplearchitecture.chat.di.ServiceBuilder;
 import com.michaelfotiadis.samplearchitecture.di.module.ActivityBuilder;
 import com.michaelfotiadis.samplearchitecture.di.module.AppModule;
 
@@ -16,7 +17,8 @@ import dagger.android.AndroidInjectionModule;
 @Component(modules = {
         AndroidInjectionModule.class,
         AppModule.class,
-        ActivityBuilder.class})
+        ActivityBuilder.class,
+        ServiceBuilder.class})
 public interface AppComponent {
 
     @Component.Builder
